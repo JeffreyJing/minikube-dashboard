@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import ObjectSection from './components/ObjectSection';
+import k8sLogo from './assets/k8s-logo.png';
 
 function App() {
   const [data, setData] = useState({});
@@ -14,23 +15,14 @@ function App() {
 
   return (
     <div className="dashboard-container">
-      <h1 className="title">My Minikube Dashboard</h1>
-      <div className="dashboard-layout">
-        <div className="column left">
-          {objectTypes.slice(0, 4).map((type, i) => (
-            <div className="node-wrapper" key={i}>
-              <ObjectSection key={i} type={type} items={data[type] || []} />
-            </div>
-          ))}
-        </div>
-        <div className="center-image" />
-        <div className="column right">
-          {objectTypes.slice(4).map((type, i) => (
-            <div className="node-wrapper" key={i}>
-              <ObjectSection key={i} type={type} items={data[type] || []} />
-            </div>
-          ))}
-        </div>
+      <header className="dashboard-header">
+        <img src={k8sLogo} alt="" className="header-logo" />
+        <h1 className="title">My Minikube Dashboard</h1>
+      </header>
+      <div className="dashboard-grid">
+        {objectTypes.map((type, i) => (
+          <ObjectSection key={i} type={type} items={data[type] || []} />
+        ))}
       </div>
     </div>
   );

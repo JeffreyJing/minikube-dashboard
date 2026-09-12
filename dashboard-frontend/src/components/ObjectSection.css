@@ -1,23 +1,121 @@
 .node {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
   cursor: pointer;
-  font-weight: bold;
-  text-align: center; /* ✅ centers all inner text */
-  transition: transform 0.2s ease;
-  color: white;
+  text-align: left;
+  color: #e8edf7;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  overflow: hidden;
+}
+
+.node:hover {
+  transform: translateY(-2px);
+  border-color: rgba(122, 162, 247, 0.45);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.node.node-open {
+  border-color: rgba(122, 162, 247, 0.55);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 9px;
+  background: rgba(122, 162, 247, 0.15);
+  color: #7aa2f7;
 }
 
 .node-title {
-  margin-bottom: 8px;
-  font-size: 150%;
+  flex: 1;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.node-count {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #9fb3d9;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.node-chevron {
+  flex: none;
+  color: #9fb3d9;
+  transition: transform 0.2s ease;
+}
+
+.node-open .node-chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.22s ease;
+}
+
+.node-open .dropdown-panel {
+  grid-template-rows: 1fr;
+}
+
+.dropdown-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dropdown {
-  padding: 0;
+  padding: 6px 10px;
   margin: 0;
   list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 .dropdown li {
-  margin: 4px 0;
-  text-align: center;
+  padding: 7px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #cdd8ee;
+}
+
+.dropdown li:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dropdown-empty {
+  padding: 14px 18px;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #7c8bab;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
 }
